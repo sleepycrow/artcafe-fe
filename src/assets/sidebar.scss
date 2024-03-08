@@ -1,0 +1,142 @@
+@use '@/assets/globals';
+
+.main-sidebar {
+	position: fixed;
+	left: calc(var(--sidebar-width) * -1.2);
+	top: 0;
+	z-index: globals.$sidebar-layer;
+	
+	width: calc(100% - 48px);
+	max-width: var(--sidebar-width);
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+
+	background-color: var(--sidebar-background-color);
+	color: var(--sidebar-text-color);
+	box-shadow: 0 0 8px #000;
+	transition: left 0.1s;
+
+	&.main-sidebar--open {
+		left: 0;
+	}
+
+	@media screen and (min-width: globals.$responsive-breakpoint-l) {
+		left: 0;
+	}
+
+	/* User Section */
+	.user-section {
+		flex: 0 0 auto;
+		min-height: 48px;
+		max-width: 100%;
+
+		display: grid;
+		grid-template-columns: 48px auto 32px;
+		overflow: hidden;
+		margin: 8px 0 8px 0;
+		padding: 0 0 0 8px;
+		border-left: 4px solid var(--accent-color);
+		align-items: center;
+		height: 48px;
+		grid-gap: 8px;
+
+		.user-section__info {
+			min-width: 0;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+
+		img.avatar {
+			width: 48px;
+			height: 48px;
+			object-fit: cover;
+		}
+
+		.user-display-name {
+			font-size: 1.25rem;
+		}
+
+		.handle {
+			font-size: 0.8rem;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-transform: uppercase;
+			font-weight: bold;
+			overflow: hidden;
+
+			& > .username {
+				opacity: 0.9;
+			}
+
+			& > .domain {
+				opacity: 0.6;
+			}
+		}
+	}
+
+	/* Navigation Section */
+	nav {
+		flex: 1 1 auto;
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+			width: 100%;
+		}
+
+		a {
+			display: flex;
+			align-items: flex-start;
+			padding: 6px 6px 6px 1rem;
+			text-decoration: none;
+			color: var(--sidebar-text-color);
+			font-size: 1.75rem;
+			transition: opacity 0.1s, background-color 0.1s, color 0.1s;
+			opacity: 0.5;
+
+			&.nav-button {
+				margin: 1rem;
+				padding: 4px 4px 8px 4px;
+				border: 2px solid var(--accent-color);
+				justify-content: center;
+
+				&:hover {
+					background-color: var(--accent-color);
+					color: var(--accent-color-text);
+				}
+			}
+
+			&:hover {
+				opacity: 1;
+			}
+
+			& > .icon {
+				line-height: 2rem;
+				vertical-align: middle;
+			}
+
+			& > .label {
+				margin-left: 6px;
+				line-height: 2rem;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	/* Instance Info Section */
+	.instance-info-section {
+		padding: 1rem;
+
+		header {
+			font-size: 1.75rem;
+		}
+
+		p {
+			margin: 0.5rem 0 0 0;
+		}
+	}
+}

@@ -1,0 +1,30 @@
+/*
+Internal sass vars -- these will not be overwritable by community owners once compiled, generally
+try to avoid using them when possible if making something looks-related
+*/
+$responsive-breakpoint-s: 768px;
+$responsive-breakpoint-l: 1280px;
+
+$sidebar-layer: 100;
+$overlay-layer: 1000;
+
+/*
+Standard CSS vars -- generally prefer these for things a community owner might want to overwrite
+(like look/branding related things)
+*/
+:root {
+	--body-background-color: #070707;
+	--body-text-color: #FFFFFF;
+	--accent-color: #673AB7;
+	--accent-text-color: #FFFFFF;
+
+	--card-background-color: #FFFFFF;
+	--card-text-color: #000000;
+
+	--sidebar-background-color: #0F0F0F;
+	--sidebar-text-color: #FFFFFF;
+	--sidebar-width: 300px;
+
+	--medium-page-width: 800px;
+	--wide-page-width: 1000px;
+}
