@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const LOGO_PATH = __APP_LOGO_PATH__
+const LOGO_PATH = __APP_LOGO_PATH__;
 </script>
 
 <template>

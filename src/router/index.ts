@@ -1,8 +1,8 @@
-import 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
-import LandingView from '@/views/LandingView/LandingView.vue'
-import AboutView from '@/views/AboutView/AboutView.vue'
-import DebugView from '@/views/DebugView/DebugView.vue'
+import 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
+import LandingView from '@/views/LandingView/LandingView.vue';
+import AboutView from '@/views/AboutView/AboutView.vue';
+import DebugView from '@/views/DebugView/DebugView.vue';
 
 declare module 'vue-router' {
 	interface RouteMeta {
@@ -32,6 +32,6 @@ const router = createRouter({
 			component: DebugView,
 		}
 	]
-})
+});
 
-export default router
+export default router;

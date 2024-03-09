@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useInstanceStore } from '@/stores/instance'
+import { useInstanceStore } from '@/stores/instance';
 
 const stores = {
 	instance: useInstanceStore(),
-}
-const LOGO_PATH = __APP_LOGO_PATH__
+};
+const LOGO_PATH = __APP_LOGO_PATH__;
 </script>
 
 <template>

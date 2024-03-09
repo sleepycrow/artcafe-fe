@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useInstanceStore } from '@/stores/instance'
-import SidebarInstanceLogo from '../SidebarInstanceLogo/SidebarInstanceLogo.vue'
+import { useInstanceStore } from '@/stores/instance';
+import SidebarInstanceLogo from '../SidebarInstanceLogo/SidebarInstanceLogo.vue';
 
 const stores = {
 	instance: useInstanceStore(),
-}
+};
 </script>
 
 <template>

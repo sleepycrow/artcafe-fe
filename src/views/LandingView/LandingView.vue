@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { useInstanceStore } from '@/stores/instance'
+import { RouterLink } from 'vue-router';
+import { useInstanceStore } from '@/stores/instance';
 
 
 // Pull in stuff from the outside
 const stores = {
 	instance: useInstanceStore()
-}
-const LOGO_PATH = __APP_LOGO_PATH__
+};
+const LOGO_PATH = __APP_LOGO_PATH__;
 </script>
 
 <template>

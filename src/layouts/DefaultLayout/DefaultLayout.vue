@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth'
-import TheSidebar from '@/components/sidebar/TheSidebar/TheSidebar.vue'
-import TheGuestSidebar from '../../components/sidebar/TheGuestSidebar/TheGuestSidebar.vue'
+import { useAuthStore } from '@/stores/auth';
+import TheSidebar from '@/components/sidebar/TheSidebar/TheSidebar.vue';
+import TheGuestSidebar from '../../components/sidebar/TheGuestSidebar/TheGuestSidebar.vue';
 
 const stores = {
 	auth: useAuthStore(),
-}
+};
 </script>
 
 <template>

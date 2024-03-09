@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth'
-import SidebarInstanceLogo from '../SidebarInstanceLogo/SidebarInstanceLogo.vue'
-import { RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/auth';
+import SidebarInstanceLogo from '../SidebarInstanceLogo/SidebarInstanceLogo.vue';
+import { RouterLink } from 'vue-router';
 import UserDisplayName from '../../UserDisplayName/UserDisplayName.vue';
 
 const stores = {
 	auth: useAuthStore()
-}
-const { userInfo } = stores.auth
+};
+const { userInfo } = stores.auth;
 
-const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@')
+const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
 </script>
 
 <template>

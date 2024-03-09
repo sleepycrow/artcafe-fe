@@ -1,42 +1,43 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import axios from 'axios'
-import _capitalize from 'lodash/capitalize'
-import _isEmpty from 'lodash/isEmpty'
-import { useInstanceStore } from '@/stores/instance'
-import UserListItem from '@/components/UserListItem/UserListItem.vue'
-import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.vue'
+import { ref, type Ref } from 'vue';
+import axios from 'axios';
+import _capitalize from 'lodash/capitalize';
+import _isEmpty from 'lodash/isEmpty';
+import { useInstanceStore } from '@/stores/instance';
+import UserListItem from '@/components/UserListItem/UserListItem.vue';
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.vue';
+import type { Account } from '@/types/api/Account';
 
 
 const stores = {
 	instance: useInstanceStore()
-}
+};
 const appInfo = {
 	name: __APP_NAME__,
 	version: __APP_VERSION__,
 	repoURL: __APP_REPO_URL__,
 	commitHash: __APP_COMMIT_HASH__,
-}
+};
 
 
-const isAboutContentLoading = ref(true)
-const aboutContent = ref(null)
+const isAboutContentLoading = ref(true);
+const aboutContent: Ref<string | null> = ref(null);
 axios.get('/static/about-instance.html', { responseType: 'text' })
 	.then(({ data }) => (aboutContent.value = data))
 	.catch(() => window.alert('GAMER SITUATION :(('))
-	.finally(() => (isAboutContentLoading.value = false))
+	.finally(() => (isAboutContentLoading.value = false));
 
 
-const areStaffAccountInfosLoading = ref(true)
-const staffAccountInfos = ref(null)
+const areStaffAccountInfosLoading = ref(true);
+const staffAccountInfos: Ref<Account[] | null> = ref(null);
 stores.instance.fetchStaffAccountInfos()
 	.then(infos => (staffAccountInfos.value = infos))
 	.then(() => console.log(staffAccountInfos.value))
 	.catch(() => window.alert('GAMER SITUATION :(('))
-	.finally(() => (areStaffAccountInfosLoading.value = false))
+	.finally(() => (areStaffAccountInfosLoading.value = false));
 
 
-const bubbleInstances = stores.instance.localBubbleInstances || []
+const bubbleInstances = stores.instance.localBubbleInstances || [];
 </script>
 
 <template>
@@ -64,7 +65,7 @@ const bubbleInstances = stores.instance.localBubbleInstances || []
 
 			<LoadingSpinner v-if="areStaffAccountInfosLoading" />
 			<ul class="staff-accounts-list">
-				<li v-for="acctInfo of staffAccountInfos">
+				<li v-for="acctInfo of staffAccountInfos" :key="acctInfo.id">
 					<UserListItem :userInfo="acctInfo" />
 				</li>
 			</ul>
@@ -76,10 +77,25 @@ const bubbleInstances = stores.instance.localBubbleInstances || []
 			<p>Communities, whose members' statuses will show up in this community's neighborhood timeline:</p>
 
 			<ul class="bubble-instances-list">
-				<li v-for="instance of bubbleInstances">
+				<li v-for="instance of bubbleInstances" :key="instance">
 					<a :href="`https://${instance}`">{{ instance }}</a>
 				</li>
 			</ul>
+		</section>
+
+		<!-- Federation details -->
+		<section class="federation-details">
+			<details>
+				<summary>Federation Details</summary>
+
+				<h2>MRF Policies</h2>
+				<p>Media Rewrite Facility (MRF) policies change the way in which a community federates with others. This community has the following policies enabled:</p>
+				<p>Sucking dick</p>
+
+				<h2>Community-specific Policies</h2>
+				<p>The staff of this community has chosen to apply specific policies to the </p>
+				<p>Sucking dick</p>
+			</details>
 		</section>
 
 		<!-- Tech info -->
@@ -108,6 +124,14 @@ const bubbleInstances = stores.instance.localBubbleInstances || []
 			font-size: 2rem;
 			font-weight: normal;
 			margin: 0;
+		}
+	}
+
+	.federation-details {
+		h2 {
+			font-weight: 1.5rem;
+			font-weight: normal;
+			margin: 1rem 0;
 		}
 	}
 

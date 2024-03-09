@@ -1,30 +1,30 @@
 <script setup>
-import { ref } from 'vue'
-import { useAuthStore } from '@/stores/auth'
+import { ref } from 'vue';
+import { useAuthStore } from '@/stores/auth';
 
 
 // Pull in stuff from the outside
 const stores = {
 	auth: useAuthStore()
-}
+};
 
 
-var elUsr = ref(null)
-var elPwd = ref(null)
+var elUsr = ref(null);
+var elPwd = ref(null);
 
 function onLogin(e){
-	e.preventDefault()
+	e.preventDefault();
 	stores.auth.loginUser(elUsr.value.value, elPwd.value.value)
-    .then(console.log)
+		.then(console.log);
 
-	elUsr.value.value = ''
-	elPwd.value.value = ''
+	elUsr.value.value = '';
+	elPwd.value.value = '';
 }
 
 function onLogout(e){
-	e.preventDefault()
+	e.preventDefault();
 	stores.auth.logoutUser()
-    .then(console.log)
+		.then(console.log);
 }
 </script>
 

@@ -1,13 +1,13 @@
-import axios from 'axios'
-import { pinia } from '@/stores/index'
-import { useAuthStore } from '@/stores/auth'
-import { BASE_URL, apiAxios } from './commons'
+import axios from 'axios';
+import { pinia } from '@/stores/index';
+import { useAuthStore } from '@/stores/auth';
+import { BASE_URL, apiAxios } from './commons';
 
-const REGISTER_APP_ENDPOINT = `/api/v1/apps`
-const VERIFY_APP_CREDENTIALS_ENDPOINT = `/api/v1/apps/verify_credentials`
-const VERIFY_USER_CREDENTIALS_ENDPOINT = '/api/v1/accounts/verify_credentials'
-const OAUTH_TOKEN_ENDPOINT = '/oauth/token'
-const OAUTH_REVOKE_ENDPOINT = '/oauth/revoke'
+const REGISTER_APP_ENDPOINT = `/api/v1/apps`;
+const VERIFY_APP_CREDENTIALS_ENDPOINT = `/api/v1/apps/verify_credentials`;
+const VERIFY_USER_CREDENTIALS_ENDPOINT = '/api/v1/accounts/verify_credentials';
+const OAUTH_TOKEN_ENDPOINT = '/oauth/token';
+const OAUTH_REVOKE_ENDPOINT = '/oauth/revoke';
 
 const oauthAxios = axios.create({
 	baseURL: BASE_URL,
@@ -19,28 +19,28 @@ const oauthAxios = axios.create({
 			'Content-Type': 'application/x-www-form-urlencoded',
 		},
 	},
-})
+});
 
 // Inject client ID & secret headers (if available) & convert request body into FormData
 oauthAxios.interceptors.request.use((config) => {
 	if (config.data) {
-		const authStore = useAuthStore(pinia)
-		const formData = new FormData()
+		const authStore = useAuthStore(pinia);
+		const formData = new FormData();
 	
 		if (authStore.clientId && authStore.clientSecret) {
-			formData.set('client_id', authStore.clientId)
-			formData.set('client_secret', authStore.clientSecret)
+			formData.set('client_id', authStore.clientId);
+			formData.set('client_secret', authStore.clientSecret);
 		}
 
-		for (let key in config.data) {
-			formData.set(key, config.data[key])
+		for (const key in config.data) {
+			formData.set(key, config.data[key]);
 		}
 
-		config.data = formData
+		config.data = formData;
 	}
 
-	return config
-})
+	return config;
+});
 
 /**
  * Registers OAuth app using this app's information
@@ -51,7 +51,7 @@ export function registerOauthApp() {
 		'client_name': 'TEST HI REPLACE ME',
 		'redirect_uris': 'urn:ietf:wg:oauth:2.0:oob',
 		'website': 'https://github.com/sleepycrow/artcafe-fe',
-	})
+	});
 }
 
 /**
@@ -61,14 +61,14 @@ export function registerOauthApp() {
  * @returns The newly-obtained auth token
  */
 export function getClientAuthToken(clientId?: string, clientSecret?: string) {
-	const payload: Record<string, string> = { 'grant_type': 'client_credentials' }
+	const payload: Record<string, string> = { 'grant_type': 'client_credentials' };
 
 	if (clientId && clientSecret) {
-		payload['client_id'] = clientId
-		payload['client_secret'] = clientSecret
+		payload['client_id'] = clientId;
+		payload['client_secret'] = clientSecret;
 	}
 
-	return oauthAxios.post(OAUTH_TOKEN_ENDPOINT, payload)
+	return oauthAxios.post(OAUTH_TOKEN_ENDPOINT, payload);
 }
 
 /**
@@ -82,7 +82,7 @@ export function getUserAuthToken(username: string, password: string) {
 		'grant_type': 'password',
 		username,
 		password,
-	})
+	});
 }
 
 /**
@@ -95,7 +95,7 @@ export function verifyClientAuthToken(token: string) {
 		headers: {
 			'Authorization': `Bearer ${token}`
 		},
-	})
+	});
 }
 
 /**
@@ -108,7 +108,7 @@ export function verifyUserAuthToken(token: string) {
 		headers: {
 			'Authorization': `Bearer ${token}`
 		},
-	})
+	});
 }
 
 /**
@@ -119,12 +119,12 @@ export function verifyUserAuthToken(token: string) {
  * @returns A successful response, if successfully revoked
  */
 export function revokeAuthToken(token: string, clientId?: string, clientSecret?: string) {
-	const payload: Record<string, string> = { token }
+	const payload: Record<string, string> = { token };
 
 	if (clientId && clientSecret) {
-		payload['client_id'] = clientId
-		payload['client_secret'] = clientSecret
+		payload['client_id'] = clientId;
+		payload['client_secret'] = clientSecret;
 	}
 
-	return oauthAxios.post(OAUTH_REVOKE_ENDPOINT, payload)
+	return oauthAxios.post(OAUTH_REVOKE_ENDPOINT, payload);
 }

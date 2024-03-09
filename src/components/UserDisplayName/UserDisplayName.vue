@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { htmlizeCustomEmoji, htmlSpecialChars } from '@/lib/utils/textUtils'
+import type { Account } from '@/types/api/Account';
+import { htmlizeCustomEmoji, htmlSpecialChars } from '@/lib/utils/textUtils';
 
-const props = defineProps(['userInfo', 'class'])
+const props = defineProps<{
+	userInfo: Account;
+	class?: string;
+}>();
 
-const classes = props.class || ''
-const userInfo = props.userInfo
+const classes = props.class || '';
+const userInfo = props.userInfo;
 
 const displayName = htmlizeCustomEmoji(
 	htmlSpecialChars(userInfo?.display_name),
 	userInfo?.emojis
-)
+);
 </script>
 
 <template>

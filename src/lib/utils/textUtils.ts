@@ -1,4 +1,4 @@
-import type { Emoji } from '@/types/api/Emoji'
+import type { Emoji } from '@/types/api/Emoji';
 
 /**
  * Converts HTML special characters to HTML entities
@@ -11,7 +11,7 @@ export function htmlSpecialChars(text: string = ''): string {
 		.replaceAll('<', '&lt;')
 		.replaceAll('>', '&gt;')
 		.replaceAll('"', '&quot;')
-		.replaceAll('\'', '&#039;')
+		.replaceAll('\'', '&#039;');
 }
 
 /**
@@ -21,21 +21,21 @@ export function htmlSpecialChars(text: string = ''): string {
  * @returns An HTML string with the emoji substituted
  */
 export function htmlizeCustomEmoji(text: string = '', emojis: Emoji[] = []): string {
-	let output = text
+	let output = text;
 	const rawMatchedShortcodes = [ ...text.matchAll(/:([^ :]+):/gi) ]
-		.map(([ _, shortcode ]) => shortcode)
-	const shortcodeMatches = new Set(rawMatchedShortcodes)
+		.map(([ _, shortcode ]) => shortcode);
+	const shortcodeMatches = new Set(rawMatchedShortcodes);
 
 	shortcodeMatches.forEach(shortcode => {
-		const emojiData = emojis.find(emojiData => emojiData.shortcode == shortcode)
+		const emojiData = emojis.find(emojiData => emojiData.shortcode == shortcode);
 		
 		if (emojiData) {
 			output = output.replaceAll(
 				`:${shortcode}:`,
 				`<img src="${emojiData.url}" alt=":${shortcode}:" title=":${shortcode}:" class="emoji" />`
-			)
+			);
 		}
-	})
+	});
 
-	return output
+	return output;
 }

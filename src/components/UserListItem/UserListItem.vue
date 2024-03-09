@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router';
+import type { Account } from '@/types/api/Account';
 import UserDisplayName from '../UserDisplayName/UserDisplayName.vue';
 
-const props = defineProps(['userInfo'])
+const props = defineProps<{
+	userInfo: Account;
+}>();
 
-const userInfo = props.userInfo
-const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@')
+const userInfo = props.userInfo;
+const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
 </script>
 
 <template>
