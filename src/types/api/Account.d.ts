@@ -42,7 +42,7 @@ export type Account = {
 	locked: boolean;
 	note: string;
 
-	pleroma: {
+	pleroma?: {
 		accepts_chat_messages?: boolean | null;
 		allow_following_move?: boolean;
 		also_known_as: string[];
@@ -72,7 +72,7 @@ export type Account = {
 		unread_notifications_count: number;
 	};
 	
-	source: {
+	source?: {
 		fields: AccountField[];
 		note: string;
 		pleroma: {

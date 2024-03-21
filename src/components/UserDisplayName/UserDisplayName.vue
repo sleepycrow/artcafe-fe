@@ -3,7 +3,7 @@ import type { Account } from '@/types/api/Account';
 import { htmlizeCustomEmoji, htmlSpecialChars } from '@/lib/utils/textUtils';
 
 const props = defineProps<{
-	userInfo: Account;
+	userInfo: Pick<Account, 'display_name' | 'emojis' | 'pleroma' | 'bot'>;
 	class?: string;
 }>();
 
