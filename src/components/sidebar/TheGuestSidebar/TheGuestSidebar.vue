@@ -25,7 +25,7 @@ const stores = {
 					</RouterLink>
 				</li>
 				<li>
-					<RouterLink to="/debug">
+					<RouterLink to="/login">
 						<span class="material-symbols-outlined icon">login</span>
 						<span class="label">Login</span>
 					</RouterLink>

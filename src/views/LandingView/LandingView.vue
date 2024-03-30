@@ -28,9 +28,13 @@ const LOGO_PATH = __APP_LOGO_PATH__;
 			<header>{{ stores.instance.nodeName }}</header>
 			<div class="description">{{ stores.instance.nodeDescription }}</div>
 			<div class="actions">
-				<RouterLink to="/about">abbout</RouterLink>
-				&nbsp;
-				<RouterLink to="/debug">gayming</RouterLink>
+				<RouterLink class="btn btn--arrow" to="/about">
+					About
+				</RouterLink>
+
+				<RouterLink class="btn btn--primary btn--arrow" to="/login">
+					Log in
+				</RouterLink>
 			</div>
 		</main>
 	</div>
@@ -80,6 +84,10 @@ const LOGO_PATH = __APP_LOGO_PATH__;
 
 		.description {
 			font-size: 1.25rem;
+		}
+
+		.actions .btn {
+			margin-right: 0.5rem;
 		}
 	}
 }
