@@ -36,15 +36,15 @@ function onLogout(e){
       <form v-if="!stores.auth.isLoggedIn" @submit="onLogin">
         <h3>Login</h3>
 
-        <label for="username-field">Username:</label> <input type="text" ref="elUsr" id="username-field" /><br>
-        <label for="password-field">Password:</label> <input type="password" ref="elPwd" id="password-field" /><br>
-        <button @click="onLogin">Log in</button>
+        <label for="username-field">Username:</label> <input type="text" ref="elUsr" id="username-field" placeholder="text" /><br>
+        <label for="password-field">Password:</label> <input type="password" ref="elPwd" id="password-field" placeholder="text" /><br>
+        <button class="btn" @click="onLogin">Log in</button>
       </form>
 
       <form v-if="stores.auth.isLoggedIn" @submit="onLogout">
         <h3>Logout</h3>
 
-        <button>Log out</button>
+        <button class="btn">Log out</button>
       </form>
     </fieldset>
 	</main>

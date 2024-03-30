@@ -46,7 +46,7 @@ img.avatar {
 	width: $width;
 
 	@media screen and (min-width: globals.$responsive-breakpoint-l) {
-		& {
+		.view-wrapper--has-sidebar & {
 			left: calc(var(--sidebar-width) + $left);
 			width: calc($width - var(--sidebar-width));
 		}
@@ -83,4 +83,50 @@ img.avatar {
 
 .page-content-container--m {
 	max-width: var(--medium-page-width);
+}
+
+.btn {
+	display: inline-block;
+	background-color: transparent;
+	color: #FFF;
+	border: 2px solid #FFF;
+	padding: 0.25rem 0.5rem;
+	margin: 2px;
+	text-decoration: none;
+	opacity: 1;
+	cursor: pointer;
+	transition: background-color 0.2s, border-color 0.2s;
+
+	&:hover {
+		background-color: #FFF;
+		color: #000;
+		border: 2px solid #FFF;
+	}
+
+	&--primary {
+		border-color: var(--accent-color);
+		background-color: var(--accent-color);
+		color: var(--accent-text-color);
+	}
+
+	&--arrow::after {
+		content: '❯';
+	}
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+	display: inline-block;
+	background-color: #777;
+	border: none;
+	padding: 4px;
+	margin: 2px;
+	transition: background-color 0.1s, border-color 0.2s;
+
+	&:focus {
+		background-color: #FFF;
+		color: #000;
+		outline: none;
+	}
 }

@@ -34,7 +34,7 @@ const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
 		</RouterLink>
 
 		<div class="user-list-item__action">
-			<button>Follow</button>
+			<button class="btn">Follow</button>
 		</div>
 	</div>
 </template>
