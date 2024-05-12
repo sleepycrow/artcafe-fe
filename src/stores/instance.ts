@@ -26,7 +26,8 @@ export const useInstanceStore = defineStore('instance', {
 			const [{data: instanceInfo}, {data: nodeInfo}] = await Promise.all([fetchInstanceInformation(), fetchNodeInfo()]);
 
 			// NodeInfo
-			this._mapPropertiesDirectly(nodeInfo.metadata, ['nodeName', 'nodeDescription', 'openRegistrations', 'localBubbleInstances']);
+			this._mapPropertiesDirectly(nodeInfo, ['openRegistrations']);
+			this._mapPropertiesDirectly(nodeInfo.metadata, ['nodeName', 'nodeDescription', 'localBubbleInstances']);
 			
 			this.softwareName = nodeInfo.software.name;
 			this.softwareVersion = nodeInfo.software.version;
