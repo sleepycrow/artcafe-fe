@@ -130,3 +130,33 @@ textarea {
 		outline: none;
 	}
 }
+
+.simple-form {
+	.simple-form__input {
+		margin-bottom: 1rem;
+
+		label {
+			display: block;
+			font-size: 0.9rem;
+		}
+
+		input, textarea, button {
+			width: calc(100% - 4px);
+		}
+
+		span[role="alert"] {
+			font-size: 0.9rem;
+			color: red;
+		}
+	}
+
+	.simple-form__actions {
+		margin-top: 1rem;
+		display: flex;
+		justify-content: center;
+
+		.btn {
+			flex: 1 1 auto;
+		}
+	}
+}

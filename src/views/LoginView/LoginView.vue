@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import _capitalize from 'lodash/capitalize';
-import _isEmpty from 'lodash/isEmpty';
 import { useInstanceStore } from '@/stores/instance';
+import LoginForm from '@/components/LoginForm/LoginForm.vue';
 
 
 const stores = {
-	instance: useInstanceStore()
+	instance: useInstanceStore(),
 };
 </script>
 
@@ -21,13 +19,18 @@ const stores = {
 		<div class="login-page-content">
 			<div class="row">
 				<h1>Log in</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad minus sit tenetur quae doloremque itaque, ratione magni natus reprehenderit eius nostrum corporis praesentium doloribus, voluptatibus soluta. Accusantium, ullam? Pariatur, eius.</p>
+				<LoginForm />
 			</div>
 
 			<div class="row">
 				<h1>Sign up</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad minus sit tenetur quae doloremque itaque, ratione magni natus reprehenderit eius nostrum corporis praesentium doloribus, voluptatibus soluta. Accusantium, ullam? Pariatur, eius.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad minus sit tenetur quae doloremque itaque, ratione magni natus reprehenderit eius nostrum corporis praesentium doloribus, voluptatibus soluta. Accusantium, ullam? Pariatur, eius.</p>
+
+				<div v-if="stores.instance.openRegistrations">
+					regs are open!!
+				</div>
+				<p v-else>
+					Sorry, signups are closed at this time.
+				</p>
 			</div>
 		</div>
 	</div>
@@ -37,9 +40,6 @@ const stores = {
 @use '@/assets/globals';
 
 .login-page-content-wrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
 	height: 100vh;
 
@@ -51,15 +51,22 @@ const stores = {
 
 .login-page-content {
 	display: grid;
+	width: 100%;
 	max-width: 768px;
 	grid-template-columns: 1fr 1fr;
 	gap: 0 1rem;
 
 	.row {
+		flex: 1 1 auto;
+		
 		h1 {
 			font-size: 2rem;
 			font-weight: normal;
 			margin: 1rem 0;
+		}
+
+		form {
+			width: 75%;
 		}
 	}
 }
