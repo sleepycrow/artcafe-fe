@@ -38,4 +38,4 @@ const stores = {
 	</aside>
 </template>
 
-<style lang="scss" src="@/assets/sidebar.scss"></style>
+<style lang="scss" src="../sidebar.scss"></style>

@@ -3,6 +3,7 @@ import { useAuthStore } from '@/stores/auth';
 import SidebarInstanceLogo from '../SidebarInstanceLogo/SidebarInstanceLogo.vue';
 import { RouterLink } from 'vue-router';
 import UserDisplayName from '../../UserDisplayName/UserDisplayName.vue';
+import UserCard from '../../UserCard/UserCard.vue';
 
 const stores = {
 	auth: useAuthStore()
@@ -16,19 +17,7 @@ const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
 	<aside class="main-sidebar">
 		<!-- User section -->
 		<section class="user-section">
-			<img
-				class="avatar"
-				:src="userInfo.avatar"
-				:alt="userInfo.acct"
-			/>
-			<div class="user-section__info">
-				<UserDisplayName :user-info="userInfo" />
-				
-				<div class="handle">
-					<span class="username">@{{ username }}</span>
-					<span class="domain">@{{ userInstanceDomain }}</span>
-				</div>
-			</div>
+			<UserCard :userInfo="userInfo" />
 
 			<div style="text-align: center;">
 				<span class="material-symbols-outlined">arrow_drop_down</span>
@@ -87,4 +76,4 @@ const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
 	</aside>
 </template>
 
-<style lang="scss" src="@/assets/sidebar.scss"></style>
+<style lang="scss" src="../sidebar.scss"></style>

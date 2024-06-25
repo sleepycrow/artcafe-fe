@@ -4,7 +4,7 @@ import axios from 'axios';
 import _capitalize from 'lodash/capitalize';
 import _isEmpty from 'lodash/isEmpty';
 import { useInstanceStore } from '@/stores/instance';
-import UserListItem from '@/components/UserListItem/UserListItem.vue';
+import UserCard from '@/components/UserCard/UserCard.vue';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.vue';
 import type { Account } from '@/types/api/Account';
 
@@ -66,7 +66,7 @@ const bubbleInstances = stores.instance.localBubbleInstances || [];
 			<LoadingSpinner v-if="areStaffAccountInfosLoading" />
 			<ul class="staff-accounts-list">
 				<li v-for="acctInfo of staffAccountInfos" :key="acctInfo.id">
-					<UserListItem :userInfo="acctInfo" />
+					<UserCard :userInfo="acctInfo" />
 				</li>
 			</ul>
 		</section>

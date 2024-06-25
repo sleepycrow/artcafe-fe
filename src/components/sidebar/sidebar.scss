@@ -1,4 +1,4 @@
-@use 'globals';
+@use '@/assets/globals';
 
 .main-sidebar {
 	position: fixed;
@@ -34,7 +34,7 @@
 		max-width: 100%;
 
 		display: grid;
-		grid-template-columns: 48px auto 32px;
+		grid-template-columns: auto 32px;
 		overflow: hidden;
 		margin: 8px 0 8px 0;
 		padding: 0 0 0 8px;
@@ -42,40 +42,6 @@
 		align-items: center;
 		height: 48px;
 		grid-gap: 8px;
-
-		.user-section__info {
-			min-width: 0;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
-		}
-
-		img.avatar {
-			width: 48px;
-			height: 48px;
-			object-fit: cover;
-		}
-
-		.user-display-name {
-			font-size: 1.25rem;
-		}
-
-		.handle {
-			font-size: 0.8rem;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			text-transform: uppercase;
-			font-weight: bold;
-			overflow: hidden;
-
-			& > .username {
-				opacity: 0.9;
-			}
-
-			& > .domain {
-				opacity: 0.6;
-			}
-		}
 	}
 
 	/* Navigation Section */
