@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { useInstanceStore } from '@/stores/instance';
 import LoginForm from '@/components/LoginForm/LoginForm.vue';
 
@@ -6,6 +7,7 @@ import LoginForm from '@/components/LoginForm/LoginForm.vue';
 const stores = {
 	instance: useInstanceStore(),
 };
+const { t } = useI18n();
 </script>
 
 <template>
@@ -18,12 +20,12 @@ const stores = {
 	<div class="login-page-content-wrapper">
 		<div class="login-page-content">
 			<div class="row">
-				<h1>Log in</h1>
+				<h1>{{ t('login.login') }}</h1>
 				<LoginForm />
 			</div>
 
 			<div class="row">
-				<h1>Sign up</h1>
+				<h1>{{ t('login.signup') }}</h1>
 
 				<div v-if="stores.instance.openRegistrations">
 					regs are open!!

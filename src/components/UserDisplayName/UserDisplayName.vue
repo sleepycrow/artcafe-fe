@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Account } from '@/types/api/Account';
 import { htmlizeCustomEmoji, htmlSpecialChars } from '@/lib/utils/textUtils';
 
@@ -6,6 +7,7 @@ const props = defineProps<{
 	userInfo: Pick<Account, 'display_name' | 'emojis' | 'pleroma' | 'bot'>;
 	class?: string;
 }>();
+const { t } = useI18n();
 
 const classes = props.class || '';
 const userInfo = props.userInfo;
@@ -21,14 +23,14 @@ const displayName = htmlizeCustomEmoji(
 		<bdi v-html="displayName" />
 		
 		<span v-if="userInfo?.pleroma?.is_admin" class="badge">
-			Admin
+			{{ t('user.role_badges.admin') }}
 		</span>
 		<span v-else-if="userInfo?.pleroma?.is_moderator" class="badge">
-			Mod
+			{{ t('user.role_badges.moderator') }}
 		</span>
 
 		<span v-if="userInfo?.bot" class="badge">
-			Bot
+			{{ t('user.role_badges.bot') }}
 		</span>
 	</span>
 </template>

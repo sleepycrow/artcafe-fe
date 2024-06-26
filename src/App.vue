@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { RouterView, useRoute } from 'vue-router';
 import { useAuthStore } from './stores/auth';
 import { useInstanceStore } from './stores/instance';
+import { useInterfaceStore } from './stores/interface';
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout.vue';
 import BlankLayout from './layouts/BlankLayout/BlankLayout.vue';
 import AppStartingOverlay from './components/AppStartingOverlay/AppStartingOverlay.vue';
@@ -12,6 +13,7 @@ const route = useRoute();
 const stores = {
 	auth: useAuthStore(),
 	instance: useInstanceStore(),
+	interface: useInterfaceStore(),
 };
 
 const layout = computed((): string => (route.meta.layout || 'DefaultLayout'));
@@ -30,6 +32,17 @@ Promise.all([
 		window.alert('gamer situation :((\n' + e);
 	})
 	.finally(() => appLoading.value = false);
+
+
+// Update document title whenever needed
+function updateTitle(){
+	document.title = [stores.interface.pageTitle, stores.instance.nodeName]
+		.filter(Boolean)
+		.join(' • ');
+}
+
+watch(() => stores.interface.pageTitle, updateTitle);
+watch(() => stores.instance.nodeName, updateTitle);
 </script>
 
 <template>

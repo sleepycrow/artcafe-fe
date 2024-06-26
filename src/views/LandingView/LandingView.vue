@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import { RouterLink } from 'vue-router';
 import { useInstanceStore } from '@/stores/instance';
 
@@ -7,6 +8,7 @@ import { useInstanceStore } from '@/stores/instance';
 const stores = {
 	instance: useInstanceStore()
 };
+const { t } = useI18n();
 // @ts-ignore
 const LOGO_PATH = __APP_LOGO_PATH__;
 </script>
@@ -30,11 +32,11 @@ const LOGO_PATH = __APP_LOGO_PATH__;
 			<div class="description">{{ stores.instance.nodeDescription }}</div>
 			<div class="actions">
 				<RouterLink class="btn btn--arrow" to="/about">
-					About
+					{{ t('nav.about') }}
 				</RouterLink>
 
 				<RouterLink class="btn btn--primary btn--arrow" to="/login">
-					Log in
+					{{ t('nav.login') }}
 				</RouterLink>
 			</div>
 		</main>

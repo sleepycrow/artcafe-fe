@@ -4,10 +4,19 @@ import LandingView from '@/views/LandingView/LandingView.vue';
 import AboutView from '@/views/AboutView/AboutView.vue';
 import DebugView from '@/views/DebugView/DebugView.vue';
 import LoginView from '@/views/LoginView/LoginView.vue';
+import { useAuthStore } from '@/stores/auth';
+import { pinia } from '@/stores';
+import { useInterfaceStore } from '@/stores/interface';
+
+const stores = {
+	auth: useAuthStore(pinia),
+	interface: useInterfaceStore(pinia),
+};
 
 declare module 'vue-router' {
 	interface RouteMeta {
-		layout: ('DefaultLayout' | 'BlankLayout');
+		layout?: ('DefaultLayout' | 'BlankLayout');
+		authRequired?: boolean;
 	}
 }
 
@@ -38,6 +47,17 @@ const router = createRouter({
 			component: DebugView,
 		}
 	]
+});
+
+router.beforeEach((to) => {
+	if(to.meta.authRequired && !stores.auth.isLoggedIn)
+		return '/';
+});
+
+router.afterEach((to, from) => {
+	// Reset the page title everytime we navigate.
+	if(to.fullPath !== from.fullPath)
+		stores.interface.setPageTitle('');
 });
 
 export default router;

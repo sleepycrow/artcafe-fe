@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import axios from 'axios';
+import { useI18n } from 'vue-i18n';
 import _capitalize from 'lodash/capitalize';
 import _isEmpty from 'lodash/isEmpty';
 import { useInstanceStore } from '@/stores/instance';
 import UserCard from '@/components/UserCard/UserCard.vue';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.vue';
 import type { Account } from '@/types/api/Account';
+import { useInterfaceStore } from '@/stores/interface';
 
 
 const stores = {
@@ -22,6 +24,10 @@ const appInfo = {
 	// @ts-ignore
 	commitHash: __APP_COMMIT_HASH__,
 };
+const { t } = useI18n();
+
+
+onMounted(() => useInterfaceStore().setPageTitle(t('nav.about')));
 
 
 const isAboutContentLoading = ref(true);
@@ -48,7 +54,7 @@ const bubbleInstances = stores.instance.localBubbleInstances || [];
 	<img
 		class="faded-background-header-img"
 		:src="stores.instance.backgroundImage"
-		alt="The instance's background image"
+		:alt="stores.instance.nodeName"
 	/>
 
 	<div class="page-content-container page-content-container--m about-page-content">
@@ -65,7 +71,7 @@ const bubbleInstances = stores.instance.localBubbleInstances || [];
 
 		<!-- Staff infos -->
 		<section v-if="areStaffAccountInfosLoading || !_isEmpty(staffAccountInfos)" class="staff-accounts">
-			<h1>Staff</h1>
+			<h1>{{ t('about.staff') }}</h1>
 
 			<LoadingSpinner v-if="areStaffAccountInfosLoading" />
 			<ul class="staff-accounts-list">
@@ -77,8 +83,8 @@ const bubbleInstances = stores.instance.localBubbleInstances || [];
 
 		<!-- Bubble instances -->
 		<section v-if="!_isEmpty(bubbleInstances)" class="bubble-instances">
-			<h1>Neighboring Communities</h1>
-			<p>Communities, whose members' statuses will show up in this community's neighborhood timeline:</p>
+			<h1>{{ t('about.bubble_instances') }}</h1>
+			<p>{{ t('about.bubble_instances_description') }}</p>
 
 			<ul class="bubble-instances-list">
 				<li v-for="instance of bubbleInstances" :key="instance">
@@ -90,7 +96,7 @@ const bubbleInstances = stores.instance.localBubbleInstances || [];
 		<!-- Federation details -->
 		<section class="federation-details">
 			<details>
-				<summary>Federation Details</summary>
+				<summary>{{ t('about.federation_details') }}</summary>
 
 				<h2>MRF Policies</h2>
 				<p>Media Rewrite Facility (MRF) policies change the way in which a community federates with others. This community has the following policies enabled:</p>
