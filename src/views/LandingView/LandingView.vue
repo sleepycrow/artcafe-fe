@@ -7,6 +7,7 @@ import { useInstanceStore } from '@/stores/instance';
 const stores = {
 	instance: useInstanceStore()
 };
+// @ts-ignore
 const LOGO_PATH = __APP_LOGO_PATH__;
 </script>
 

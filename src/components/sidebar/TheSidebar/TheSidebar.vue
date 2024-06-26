@@ -4,13 +4,14 @@ import SidebarInstanceLogo from '../SidebarInstanceLogo/SidebarInstanceLogo.vue'
 import { RouterLink } from 'vue-router';
 import UserDisplayName from '../../UserDisplayName/UserDisplayName.vue';
 import UserCard from '../../UserCard/UserCard.vue';
+import type { Account } from '@/types/api/Account';
 
 const stores = {
 	auth: useAuthStore()
 };
-const { userInfo } = stores.auth;
+const userInfo = stores.auth.userInfo as Account;
 
-const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
+const [ username, userInstanceDomain ] = userInfo.fqn.split('@');
 </script>
 
 <template>

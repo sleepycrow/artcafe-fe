@@ -13,6 +13,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@types/lodash": "^4.17.5",
     "axios": "^1.6.7",
     "lodash": "^4.17.21",
     "material-symbols": "^0.15.0",

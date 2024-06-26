@@ -50,7 +50,7 @@ export const useInstanceStore = defineStore('instance', {
 		async fetchStaffAccountInfos(): Promise<Account[]> {
 			return (await Promise.all(this.staff.map(fetchAccountInfo)))
 				.map(({ data }) => data)
-				.filter(acctInfo => acctInfo.pleroma.is_admin || acctInfo.pleroma.is_moderator) // exclude accounts with hidden ranks
+				.filter(acctInfo => acctInfo.pleroma?.is_admin || acctInfo.pleroma?.is_moderator) // exclude accounts with hidden ranks
 				.sort((a, b) => getAccountRankForSorting(b) - getAccountRankForSorting(a));
 		},
 	}

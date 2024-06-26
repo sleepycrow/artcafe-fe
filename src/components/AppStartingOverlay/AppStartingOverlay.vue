@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-ignore
 const LOGO_PATH = __APP_LOGO_PATH__;
 </script>
 

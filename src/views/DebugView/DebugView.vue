@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 
@@ -9,19 +9,7 @@ const stores = {
 };
 
 
-var elUsr = ref(null);
-var elPwd = ref(null);
-
-function onLogin(e){
-	e.preventDefault();
-	stores.auth.loginUser(elUsr.value.value, elPwd.value.value)
-		.then(console.log);
-
-	elUsr.value.value = '';
-	elPwd.value.value = '';
-}
-
-function onLogout(e){
+function onLogout(e: any){
 	e.preventDefault();
 	stores.auth.logoutUser()
 		.then(console.log);
@@ -33,14 +21,6 @@ function onLogout(e){
     <h1>you are now being gay manually</h1>
 
     <fieldset v-if="stores.auth.isAppRegistered">
-      <form v-if="!stores.auth.isLoggedIn" @submit="onLogin">
-        <h3>Login</h3>
-
-        <label for="username-field">Username:</label> <input type="text" ref="elUsr" id="username-field" placeholder="text" /><br>
-        <label for="password-field">Password:</label> <input type="password" ref="elPwd" id="password-field" placeholder="text" /><br>
-        <button class="btn" @click="onLogin">Log in</button>
-      </form>
-
       <form v-if="stores.auth.isLoggedIn" @submit="onLogout">
         <h3>Logout</h3>
 

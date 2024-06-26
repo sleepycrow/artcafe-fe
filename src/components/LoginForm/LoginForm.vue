@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import * as yup from 'yup';
 import { Field, Form, ErrorMessage } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
@@ -22,7 +22,7 @@ function onSubmit({ username, password }, form){
 
 <template>
 	<Form
-		v-if="stores.auth.isAppRegistered && !stores.auth.isLoggedIn"
+		v-if="stores.auth.isAppRegistered"
 		@submit="onSubmit"
 		class="simple-form"
 	>

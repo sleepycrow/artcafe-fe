@@ -13,9 +13,13 @@ const stores = {
 	instance: useInstanceStore()
 };
 const appInfo = {
+	// @ts-ignore
 	name: __APP_NAME__,
+	// @ts-ignore
 	version: __APP_VERSION__,
+	// @ts-ignore
 	repoURL: __APP_REPO_URL__,
+	// @ts-ignore
 	commitHash: __APP_COMMIT_HASH__,
 };
 
