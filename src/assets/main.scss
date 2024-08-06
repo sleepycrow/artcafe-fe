@@ -17,6 +17,10 @@ a {
 	text-decoration: underline;
 }
 
+details summary {
+	cursor: pointer;
+}
+
 img {
 	max-width: 100%;
 }
@@ -85,6 +89,10 @@ img.avatar {
 	max-width: var(--medium-page-width);
 }
 
+.page-content-container--l {
+	max-width: var(--large-page-width);
+}
+
 .btn {
 	display: inline-block;
 	background-color: transparent;
@@ -111,6 +119,7 @@ img.avatar {
 
 	&--arrow::after {
 		content: '❯';
+		margin-left: 0.5em;
 	}
 }
 

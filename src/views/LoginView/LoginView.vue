@@ -15,6 +15,7 @@ const { t } = useI18n();
 		class="faded-background-header-img"
 		:src="stores.instance.backgroundImage"
 		alt="The instance's background image"
+		aria-hidden="true"
 	/>
 
 	<div class="login-page-content-wrapper">
