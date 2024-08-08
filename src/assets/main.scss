@@ -48,6 +48,7 @@ img.avatar {
 	position: absolute;
 	left: $left;
 	width: $width;
+	pointer-events: none;
 
 	@media screen and (min-width: globals.$responsive-breakpoint-l) {
 		.view-wrapper--has-sidebar & {
