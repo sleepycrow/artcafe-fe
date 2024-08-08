@@ -7,6 +7,7 @@ import LoginView from '@/views/LoginView/LoginView.vue';
 import { useAuthStore } from '@/stores/auth';
 import { pinia } from '@/stores';
 import { useInterfaceStore } from '@/stores/interface';
+import ProfileView from '@/views/ProfileView/ProfileView.vue';
 
 const stores = {
 	auth: useAuthStore(pinia),
@@ -45,7 +46,19 @@ const router = createRouter({
 			path: '/debug',
 			name: 'debug',
 			component: DebugView,
-		}
+		},
+
+		// Profiles
+		{
+			path: '/users/:queriedUserId',
+			name: 'profile',
+			component: ProfileView,
+		},
+		{
+			path: '/@:queriedUserId',
+			name: 'local_user_profile',
+			component: ProfileView,
+		},
 	]
 });
 

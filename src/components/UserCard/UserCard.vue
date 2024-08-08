@@ -10,13 +10,14 @@ const props = defineProps<{
 
 const classes = props.class || '';
 const userInfo = props.userInfo;
+const isLocalUser = !userInfo.acct.includes('@');
 const [ username, userInstanceDomain ] = (userInfo.fqn as string).split('@');
 </script>
 
 <template>
 	<RouterLink
 		:class="`user-display-card ${classes}`"
-		to="debug"
+		:to="isLocalUser ? `/@${userInfo.acct}` : `/users/${userInfo.id}`"
 	>
 		<img
 			class="avatar"
