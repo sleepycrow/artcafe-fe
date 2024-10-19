@@ -1,12 +1,12 @@
 import type { Emoji } from './Emoji.d';
 
-export interface AccountField {
+export type AccountField = {
 	name: string;
 	value: string;
 	verified_at?: string | null;
 };
 
-export interface AccountRelationship {
+export type AccountRelationship = {
 	blocked_by?: boolean;
 	blocking?: boolean;
 	domain_blocking?: boolean;
@@ -23,7 +23,7 @@ export interface AccountRelationship {
 	subscribing?: boolean;
 };
 
-export interface Account {
+export type Account = {
 	acct: string;
 	avatar: string;
 	avatar_static: string;
@@ -91,6 +91,6 @@ export interface Account {
 	url: string
 };
 
-export interface CachedAccount extends Account {
+export type CachedAccount = Account & {
 	cachedAt: number;
-}
+};
