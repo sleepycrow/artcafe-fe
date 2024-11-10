@@ -11,7 +11,7 @@ export const useInstanceStore = defineStore('instance', {
 		openRegistrations: true,
 		localBubbleInstances: [] as string[],
 		staff: [] as string[],
-		softwareName: 'Artcafe',
+		softwareName: '',
 		softwareVersion: '',
 		softwareRepositoryURL: '',
 

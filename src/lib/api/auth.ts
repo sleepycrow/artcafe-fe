@@ -48,9 +48,11 @@ oauthAxios.interceptors.request.use((config) => {
  */
 export function registerOauthApp() {
 	return apiAxios.post(REGISTER_APP_ENDPOINT, {
-		'client_name': 'TEST HI REPLACE ME',
+		// @ts-ignore
+		'client_name': __APP_NAME__ + ' ' + __APP_VERSION__ + ' (' + __APP_COMMIT_HASH__ + ')',
+		// @ts-ignore
+		'website': __APP_REPO_URL__,
 		'redirect_uris': 'urn:ietf:wg:oauth:2.0:oob',
-		'website': 'https://github.com/sleepycrow/artcafe-fe',
 	});
 }
 
